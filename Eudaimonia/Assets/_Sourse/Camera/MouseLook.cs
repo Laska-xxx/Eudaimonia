@@ -31,7 +31,7 @@ public class MouseLook : MonoBehaviour
         Vector2 lookVector = _mouseLookAction.ReadValue<Vector2>();
 
         _xRotation -= lookVector.y * mouseSensitivity;
-        _xRotation = Mathf.Clamp(_xRotation, -80f, 90f);
+        _xRotation = Mathf.Clamp(_xRotation, -80f, 50f);
 
         transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * lookVector.x * mouseSensitivity);
