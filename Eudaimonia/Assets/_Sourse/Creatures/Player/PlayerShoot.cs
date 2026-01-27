@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
+    [SerializeField] private int damage;
     [SerializeField] private float cooldown;
     [SerializeField] private Transform shootPos;
     [SerializeField] private BulletPoolController bulletPoolController;
@@ -32,7 +33,7 @@ public class PlayerShoot : MonoBehaviour
             var dir = ray.direction;
             dir.z += 0.05f;
             dir.y += 0.05f;
-            bulletPoolController.GetBullet().Init(shootPos, dir);
+            bulletPoolController.GetBullet().Init(damage, shootPos, dir);
         }
 
         StartCoroutine(Cooldown());

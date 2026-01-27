@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float liveTime = 5;
 
+    private int _damage;
     private Vector3 _direction;
     private Rigidbody rb;
 
@@ -14,8 +15,9 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    public void Init(Transform pos, Vector3 direction)
+    public void Init(int damage, Transform pos, Vector3 direction)
     {
+        _damage = damage;
         gameObject.transform.position = pos.position;
         _direction = direction.normalized;
         transform.forward = _direction;
@@ -40,7 +42,15 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print(collision.gameObject);
         StopAllCoroutines();
+
+        if (collision.gameObject.TryGetComponent<AHealth>(out AHealth health))
+        {
+            print("cteature!");
+            health.GetDamage(_damage);
+        }
+
         gameObject.SetActive(false);
     }
 }
