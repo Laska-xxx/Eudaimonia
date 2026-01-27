@@ -10,17 +10,20 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float patrolCooldown = 3;
     [SerializeField] private float stalkDuration = 3;
     [SerializeField] private float stalkCooldown = 3;
-    [SerializeField] private List<PotrulPoint> points;
-    [SerializeField] private Transform player;
     [SerializeField] private NearPlayerTrigger detectPlayerTrigger;
     [SerializeField] private NearPlayerTrigger nearPlayerTrigger;
+
+    private List<PatrulPoint> _points;
+    private Transform _player;
     private NavMeshAgent agent;
-    private PotrulPoint curPoint;
+    private PatrulPoint curPoint;
     private bool isStalking = false;
     private bool canStalking = true;
 
-    private void Start()
+    public void Init(List<PatrulPoint> potrulPoints, Transform player)
     {
+        _player = player;
+        _points = potrulPoints;
         agent = GetComponent<NavMeshAgent>();
         Patrol();
     }
@@ -48,14 +51,14 @@ public class EnemyMovement : MonoBehaviour
 
     private void Patrol()
     {
-        int randPointIndex = Random.Range(0, points.Count);
+        int randPointIndex = Random.Range(0, _points.Count);
 
-        while (points[randPointIndex].IsUse == true)
+        while (_points[randPointIndex].IsUse == true)
         {
-            randPointIndex = Random.Range(0, points.Count);
+            randPointIndex = Random.Range(0, _points.Count);
         }
 
-        curPoint = points[randPointIndex];
+        curPoint = _points[randPointIndex];
 
         agent.SetDestination(curPoint.gameObject.transform.position);
     }
@@ -68,7 +71,7 @@ public class EnemyMovement : MonoBehaviour
 
         while (curDuration > 0)
         {
-            agent.SetDestination(player.position);
+            agent.SetDestination(_player.position);
             yield return new WaitForSeconds(step);
             curDuration -= step;
 

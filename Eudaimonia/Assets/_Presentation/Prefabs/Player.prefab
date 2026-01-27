@@ -669,9 +669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8b8beffd2968644847b2d29a4591c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   cooldown: 0.2
-  shootPos: {fileID: 7937811470030769402}
-  bulletPoolController: {fileID: 0}
+  rayCastShoot: {fileID: 3807846561133265374}
 --- !u!1 &6153940335821738197
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +681,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7937811470030769402}
+  - component: {fileID: 3807846561133265374}
   m_Layer: 0
   m_Name: ShootPos
   m_TagString: Untagged
@@ -697,9 +698,27 @@ Transform:
   m_GameObject: {fileID: 6153940335821738197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.323, y: -0.337, z: 1.51}
+  m_LocalPosition: {x: 0, y: 0, z: 1.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1230502742479178182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3807846561133265374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153940335821738197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d1a0fadab23df409bf2578f62739a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  distance: Infinity
+  bloodPoolController: {fileID: 0}

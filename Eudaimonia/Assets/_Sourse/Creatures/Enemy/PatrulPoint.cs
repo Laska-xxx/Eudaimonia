@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PotrulPoint : MonoBehaviour
+public class PatrulPoint : MonoBehaviour
 {
     public bool IsUse = false;
 }

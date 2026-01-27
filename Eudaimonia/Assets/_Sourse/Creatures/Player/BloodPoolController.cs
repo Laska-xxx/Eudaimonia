@@ -13,6 +13,7 @@ public class BloodPoolController : MonoBehaviour
             _curIndex = 1;
 
         var particle = bloodParticles[_curIndex];
+        particle.gameObject.SetActive(true);
         _curIndex++;
         return particle;
     }

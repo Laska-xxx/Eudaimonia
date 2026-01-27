@@ -7,8 +7,8 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private int damage;
     [SerializeField] private float cooldown;
-    [SerializeField] private Transform shootPos;
-    [SerializeField] private BulletPoolController bulletPoolController;
+    [SerializeField] private ParticleSystem shootParticle;
+    [SerializeField] private RayCastShoot rayCastShoot;
 
     private bool _canShoot = true;
     private InputAction _ShootAction;
@@ -29,11 +29,8 @@ public class PlayerShoot : MonoBehaviour
     {
         if (_canShoot)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            var dir = ray.direction;
-            dir.z += 0.05f;
-            dir.y += 0.05f;
-            bulletPoolController.GetBullet().Init(damage, shootPos, dir);
+            rayCastShoot.PerformShoot();
+            shootParticle.Play();
         }
 
         StartCoroutine(Cooldown());
