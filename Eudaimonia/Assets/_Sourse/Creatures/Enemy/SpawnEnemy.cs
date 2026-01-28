@@ -7,6 +7,7 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private List<Transform> spawnPoints;
     [SerializeField] private List<PatrulPoint> patrulPoints;
+    [SerializeField] private Currency currency;
 
     public void Spawn(int count)
     {
@@ -17,6 +18,7 @@ public class SpawnEnemy : MonoBehaviour
             Quaternion.identity, transform);
             print(enemy.name);
             enemy.GetComponent<EnemyMovement>().Init(patrulPoints, player);
+            enemy.GetComponent<EnemyHealth>().Init(currency);
             print("end spawn");
         }
     }
